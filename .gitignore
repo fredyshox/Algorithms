@@ -8,3 +8,6 @@
 ## Build
 *.o
 *.gch
+
+## Python
+__pycache__
