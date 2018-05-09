@@ -12,6 +12,7 @@ class Algorithm(Enum):
     MERGE = 1
     QUICK = 2
     DPQUICK = 3
+    RADIX = 4
 
 class Stats(object):
     """ Represents sorting statistics. """
@@ -204,6 +205,36 @@ def dual_pivot_partition(array, left, right, order, stats):
     swap_c += 2
     __update_stats(lambda s: (s.inc_swap(swap_c), s.inc_comp(comp_c)), stats)
     return (i, k)
+
+# Radix sort
+
+def radix_sort(array, base=10, order=Order.LE, stats=None):
+    maxval = max(array)
+
+    it = 0
+    sorted_arr = array
+    while base ** it <= maxval:
+        sorted_arr = bucket_to_list(list_to_buckets(sorted_arr, base, it, order))
+        it += 1
+    init_len = len(array)
+    array[init_len:] = sorted_arr
+    array[:init_len] = []
+
+def bucket_to_list(buckets):
+    numbers = []
+    for bucket in buckets:
+        for elem in bucket:
+            numbers.append(elem)
+    return numbers
+
+def list_to_buckets(array, base, iteration, order=Order.LE):
+    buckets = [[] for _ in range(base)]
+    for elem in array:
+        digit = (elem // (base ** iteration)) % base
+        digit = digit if order is Order.LE else (base - digit - 1)
+        buckets[digit].append(elem)
+
+    return buckets
 
 # Utilities
 

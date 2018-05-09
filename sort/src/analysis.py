@@ -61,8 +61,9 @@ def analyze_random(count, output=None, input=None):
             m_vals = (np.apply_along_axis(lambda a: analyze(merge_sort, a.tolist()), 1, val), Algorithm.MERGE)
             q_vals = (np.apply_along_axis(lambda a: analyze(quicksort, a.tolist()), 1, val), Algorithm.QUICK)
             dpq_vals = (np.apply_along_axis(lambda a: analyze(dual_pivot_quicksort, a.tolist()), 1, val), Algorithm.DPQUICK)
+            rdx_vals = (np.apply_along_axis(lambda a: analyze(radix_sort, a.tolist()), 1, val), Algorithm.RADIX)
             print_err("COMPLETED {} OK".format(key))
-            for vals, alg in [i_vals, m_vals, q_vals, dpq_vals]:
+            for vals, alg in [i_vals, m_vals, q_vals, dpq_vals, rdx_vals]:
                 for s in np.nditer(vals, flags=['refs_ok']):
                     d = vars(s.item())
                     d['algorithm'] = alg.name.lower()

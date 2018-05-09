@@ -67,6 +67,8 @@ def main():
         quicksort(elements, order=order, stats=stats)
     elif algorithm is Algorithm.DPQUICK:
         dual_pivot_quicksort(elements, 0, len(elements) - 1, order=order, stats=stats)
+    elif algorithm is Algorithm.RADIX:
+        radix_sort(elements, order=order, stats=stats)
     end = time.time()
 
     stats.time = end - start
