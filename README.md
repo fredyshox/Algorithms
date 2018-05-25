@@ -13,4 +13,8 @@ Implementation of following algorithms:
 * Lists
 * * [Singly Linked List](./linked_list/)
 * * [Doubly Linked List](./doubly_linked_list/)
+* Data Structures
+* * [Binary Search Tree](./data_structures/src/com/raczy/ds/BinarySearchTree.java)
+* * [Red Black Tree](./data_structures/src/com/raczy/ds/RedBlackTree.java)
+* * [Hash Table](./data_structures/src/com/raczy/ds/HashTable.java)
 * [Binary Search](./binary_search/)
