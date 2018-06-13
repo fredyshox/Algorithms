@@ -13,6 +13,7 @@ class Algorithm(Enum):
     QUICK = 2
     DPQUICK = 3
     RADIX = 4
+    HYBRID = 5
 
 class Stats(object):
     """ Represents sorting statistics. """
@@ -205,6 +206,22 @@ def dual_pivot_partition(array, left, right, order, stats):
     swap_c += 2
     __update_stats(lambda s: (s.inc_swap(swap_c), s.inc_comp(comp_c)), stats)
     return (i, k)
+
+# Hybrid sort
+# Dual pivot quicksort + insertion sort
+
+def hybrid_sort(array, left=0, right=None, order=Order.LE, stats=None):
+    if right is None:
+        right = len(array) - 1
+    if right > left and ((right + 1) - left) < 11:
+        x = array[left:right+1]
+        insertion_sort(x, order=order, stats=stats)
+        array[left:right+1] = x
+    elif right > left:
+        i, k = dual_pivot_partition(array, left, right, order, stats)
+        hybrid_sort(array, left, i - 2, order, stats)
+        hybrid_sort(array, i, k, order, stats)
+        hybrid_sort(array, k + 2, right, order, stats)
 
 # Radix sort
 

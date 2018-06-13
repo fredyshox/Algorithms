@@ -7,10 +7,10 @@
 import argparse
 import time
 import sys
+import random
 
 from sort import *
 
-import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
@@ -51,24 +51,21 @@ def analyze_random(count, output=None, input=None):
     print_err('Random analysis started...')
 
     if input is None:
-        rand_dict = dict()
-        for size in range(100, 10100, 100):
-            rand_dict[size] = np.random.rand(count, size)
-
         row_list = []
-        for key, val in rand_dict.items():
-            i_vals = (np.apply_along_axis(lambda a: analyze(insertion_sort, a.tolist()), 1, val), Algorithm.INSERT)
-            m_vals = (np.apply_along_axis(lambda a: analyze(merge_sort, a.tolist()), 1, val), Algorithm.MERGE)
-            q_vals = (np.apply_along_axis(lambda a: analyze(quicksort, a.tolist()), 1, val), Algorithm.QUICK)
-            dpq_vals = (np.apply_along_axis(lambda a: analyze(dual_pivot_quicksort, a.tolist()), 1, val), Algorithm.DPQUICK)
-            rdx_vals = (np.apply_along_axis(lambda a: analyze(radix_sort, a.tolist()), 1, val), Algorithm.RADIX)
-            print_err("COMPLETED {} OK".format(key))
-            for vals, alg in [i_vals, m_vals, q_vals, dpq_vals, rdx_vals]:
-                for s in np.nditer(vals, flags=['refs_ok']):
-                    d = vars(s.item())
+        alg_list = [(merge_sort, Algorithm.MERGE),
+                    (quicksort, Algorithm.QUICK),
+                    (dual_pivot_quicksort, Algorithm.DPQUICK),
+                    (radix_sort, Algorithm.RADIX),
+                    (hybrid_sort, Algorithm.HYBRID)]
+        for n in range(100, 10100, 100):
+            for func, alg in alg_list:
+                for _ in range(count):
+                    arr = random.sample(range(n), n)
+                    d = vars(analyze(func, arr))
                     d['algorithm'] = alg.name.lower()
                     row_list.append(d)
-
+                    del arr
+            print_err("COMPLETED {} OK".format(n))
         df = pd.DataFrame(row_list)
         if not output is None:
             df.to_csv(output)

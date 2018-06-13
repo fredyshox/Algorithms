@@ -1,0 +1,5 @@
+#!/bin/bash
+#
+# Copyright (c) 2018 Kacper Raczy. All rights reserved.
+
+python3 src/main.py $1 $2 $3 $4 $5 $6

@@ -69,6 +69,8 @@ def main():
         dual_pivot_quicksort(elements, 0, len(elements) - 1, order=order, stats=stats)
     elif algorithm is Algorithm.RADIX:
         radix_sort(elements, order=order, stats=stats)
+    elif algorithm is Algorithm.HYBRID:
+        hybrid_sort(array, order=order, stats=stats)
     end = time.time()
 
     stats.time = end - start
