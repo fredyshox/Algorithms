@@ -28,6 +28,8 @@ public class Main {
             case "hmap":
                 ds = new HashTableAdapter<>();
                 break;
+            case "bloom":
+                ds = new BloomFilter<>(100, 0.01);
             default:
                 System.out.println("Invalid --type value.");
                 System.exit(2);
