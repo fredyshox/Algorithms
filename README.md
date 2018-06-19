@@ -19,4 +19,5 @@ Implementation of following algorithms:
   - [Red Black Tree](./data_structures/src/com/raczy/ds/RedBlackTree.java)
   - [Hash Table](./data_structures/src/com/raczy/ds/HashTable.java)
   - [Bloom Filter](./data_structures/src/com/raczy/ds/bloom)
+  - [Priority Queue](./pqueue/)
 * [Binary Search](./binary_search/)
