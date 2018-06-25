@@ -21,3 +21,6 @@ Implementation of following algorithms:
   - [Bloom Filter](./data_structures/src/com/raczy/ds/bloom)
   - [Priority Queue](./pqueue/)
 * [Binary Search](./binary_search/)
+* Graph algorithms
+  - [Djikstra](./graph/djikstra/)
+  - [Minimal Spanning Tree](./graph/mst)
