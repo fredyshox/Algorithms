@@ -12,8 +12,8 @@ Implementation of following algorithms:
   - Median of medians
   - Randomized select
 * Lists
-  - [Singly Linked List](./linked_list/)
-  - [Doubly Linked List](./doubly_linked_list/)
+  - [Singly Linked List](./lists/linked_list/)
+  - [Doubly Linked List](./lists/doubly_linked_list/)
 * Data Structures
   - [Binary Search Tree](./data_structures/src/com/raczy/ds/BinarySearchTree.java)
   - [Red Black Tree](./data_structures/src/com/raczy/ds/RedBlackTree.java)
